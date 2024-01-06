@@ -1,0 +1,57 @@
+
+/*Crear la tabla users*/
+CREATE TABLE users (
+  user_id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NULL,
+  created_at DATETIME,
+  updated_at DATETIME,
+  PRIMARY KEY (user_id));
+/*Crear la tabla companies*/
+CREATE TABLE companies (
+  company_id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NULL,
+  created_at DATETIME,
+  updated_at DATETIME,
+  PRIMARY KEY (company_id));
+/*Crear la tabla cities*/
+CREATE TABLE cities (
+  city_id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NULL,
+  created_at DATETIME,
+  updated_at DATETIME,
+  PRIMARY KEY (city_id));
+
+/*Crear la tabla projects*/
+CREATE TABLE projects (
+  project_id INT NOT NULL AUTO_INCREMENT,
+  city_id INT NULL,
+  company_id INT NULL,
+  user_id INT NULL,
+  name VARCHAR(30) NULL,
+  execution_date DATE NULL,
+  is_active TINYINT NULL,
+  created_at DATETIME NULL,
+  updated_at DATETIME NULL,
+  PRIMARY KEY (project_id));
+
+
+/*Procedemos a crear las llaves foráneas*/
+ALTER TABLE projects ADD FOREIGN KEY (city_id) REFERENCES cities(city_id);
+
+ALTER TABLE projects ADD FOREIGN KEY (company_id) REFERENCES companies(company_id);
+
+ALTER TABLE projects ADD FOREIGN KEY (user_id) REFERENCES users(user_id);
+
+/*insercion de datos*/
+INSERT INTO users (name) VALUES
+('John Doe'),
+('Jane Smith'),
+('Alice Johnson'),
+('Bob Williams'),
+('Eva Davis'),
+('Michael Brown'),
+('Olivia White'),
+('Daniel Lee'),
+('Sophia Harris'),
+('Ryan Miller');
+
